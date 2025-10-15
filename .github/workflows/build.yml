@@ -7,39 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      
-    - name: Setup Android SDK
-      uses: android-actions/setup-android@v2
-      
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y \
-          python3-pip \
-          python3-dev \
-          git \
-          zip \
-          unzip \
-          openjdk-17-jdk \
-          build-essential \
-          libffi-dev \
-          libssl-dev
-          
-    - name: Install Python dependencies
-      run: |
-        pip install --upgrade pip
-        pip install buildozer cython==0.29.33
-      
-    - name: Build APK
-      run: |
-        buildozer android clean
-        buildozer -v android debug
-      
-    - name: Upload APK
-      uses: actions/upload-artifact@v4
+    - uses: actions/checkout@v4
+    
+    - name: Build with Buildozer Action
+      uses: ArtemSBulgakov/buildozer-action@v1
+      with:
+        work-dir: ./
+        buildozer-version: main
+        
+    - uses: actions/upload-artifact@v4
       with:
         name: isolines-app
         path: bin/*.apk
-        retention-days: 5
+        retention-days: 7
