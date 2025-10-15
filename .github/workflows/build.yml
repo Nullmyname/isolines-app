@@ -10,14 +10,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: Setup environment
+    - name: Install system dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y \
           python3-pip \
-          autoconf \
-          libtool \
-          pkg-config \
           git \
           zip \
           unzip \
@@ -25,9 +22,6 @@ jobs:
           
     - name: Install Buildozer
       run: pip install buildozer
-      
-    - name: Initialize Buildozer
-      run: buildozer init
       
     - name: Build APK
       run: buildozer -v android debug
@@ -37,4 +31,3 @@ jobs:
       with:
         name: isolines-app
         path: bin/*.apk
-        retention-days: 5
