@@ -11,20 +11,14 @@ requirements = python3,kivy
 
 orientation = portrait
 
-[buildozer]
-log_level = 2
-
-[app]
 presplash.filename = %(source.dir)s/presplash.png
 icon.filename = %(source.dir)s/icon.png
 
-[app]
 android.permissions = INTERNET
-
 android.api = 33
 android.minapi = 21
 android.sdk = 28
 android.ndk = 25b
 
-[app]
-p4a.branch = master
+[buildozer]
+log_level = 2
