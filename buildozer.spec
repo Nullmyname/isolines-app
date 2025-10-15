@@ -4,7 +4,6 @@ package.name = isolines
 package.domain = org.geology
 
 source.dir = .
-source.include_exts = py,png,jpg,kv,atlas,ttf
 
 version = 1.0
 requirements = python3,kivy
