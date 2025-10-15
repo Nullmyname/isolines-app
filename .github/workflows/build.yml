@@ -15,13 +15,21 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y \
           python3-pip \
+          python3-dev \
           git \
           zip \
           unzip \
-          openjdk-17-jdk
+          openjdk-17-jdk \
+          build-essential \
+          libffi-dev \
+          libssl-dev \
+          zlib1g-dev \
+          libncurses5-dev
           
-    - name: Install Buildozer
-      run: pip install buildozer
+    - name: Install Python dependencies
+      run: |
+        pip install --upgrade pip
+        pip install buildozer cython==0.29.33 virtualenv
       
     - name: Build APK
       run: buildozer -v android debug
@@ -31,3 +39,4 @@ jobs:
       with:
         name: isolines-app
         path: bin/*.apk
+        retention-days: 5
